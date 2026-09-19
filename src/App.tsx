@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { RawAlert, Incident, TriageState, PastIncident } from './types';
 import { Sidebar } from './components/Sidebar';
 import { TopAppBar } from './components/TopAppBar';
 import { GlobalSearchModal } from './components/GlobalSearchModal';
 import { PagerEmergencyPulse } from './components/PagerEmergencyPulse';
-import { IncidentsKanbanPage } from './pages/IncidentsKanbanPage';
-import { IncidentDeepDivePage } from './pages/IncidentDeepDivePage';
-import { NoiseStreamPage } from './pages/NoiseStreamPage';
-import { PostMortemsPage } from './pages/PostMortemsPage';
-import { IntegrationsPage } from './pages/IntegrationsPage';
+
+const IncidentsKanbanPage = lazy(() => import('./pages/IncidentsKanbanPage').then(m => ({ default: m.IncidentsKanbanPage })));
+const IncidentDeepDivePage = lazy(() => import('./pages/IncidentDeepDivePage').then(m => ({ default: m.IncidentDeepDivePage })));
+const NoiseStreamPage = lazy(() => import('./pages/NoiseStreamPage').then(m => ({ default: m.NoiseStreamPage })));
+const PostMortemsPage = lazy(() => import('./pages/PostMortemsPage').then(m => ({ default: m.PostMortemsPage })));
+const IntegrationsPage = lazy(() => import('./pages/IntegrationsPage').then(m => ({ default: m.IntegrationsPage })));
 
 export default function App() {
   const [alerts, setAlerts] = useState<RawAlert[]>([]);
@@ -314,65 +315,74 @@ export default function App() {
 
           {/* Page View Canvas */}
           <main className="flex-1 p-6 lg:p-8 max-w-7xl w-full mx-auto">
-            <Routes>
-              {/* Default Landing Page: Active Incidents Kanban */}
-              <Route path="/" element={<Navigate to="/incidents" replace />} />
+            <Suspense fallback={
+              <div className="flex items-center justify-center min-h-[400px]">
+                <div className="flex items-center gap-3 text-neutral-500 font-mono text-xs">
+                  <div className="w-4 h-4 rounded-full border-2 border-neutral-400 border-t-transparent animate-spin" />
+                  Loading Command Center...
+                </div>
+              </div>
+            }>
+              <Routes>
+                {/* Default Landing Page: Active Incidents Kanban */}
+                <Route path="/" element={<Navigate to="/incidents" replace />} />
 
-              {/* Route: Active Incidents (/incidents) */}
-              <Route
-                path="/incidents"
-                element={
-                  <IncidentsKanbanPage
-                    incidents={incidents}
-                    onTriggerTriage={handleTriggerTriage}
-                    triageState={triageState}
-                    onStatusChange={handleStatusChange}
-                  />
-                }
-              />
+                {/* Route: Active Incidents (/incidents) */}
+                <Route
+                  path="/incidents"
+                  element={
+                    <IncidentsKanbanPage
+                      incidents={incidents}
+                      onTriggerTriage={handleTriggerTriage}
+                      triageState={triageState}
+                      onStatusChange={handleStatusChange}
+                    />
+                  }
+                />
 
-              {/* Route: Command Center Deep Dive (/incidents/:id) */}
-              <Route
-                path="/incidents/:id"
-                element={
-                  <IncidentDeepDivePage
-                    incidents={incidents}
-                    onToggleStep={handleToggleStep}
-                    isUpdatingStep={isUpdatingStep}
-                    onRefreshIncidents={fetchIncidents}
-                  />
-                }
-              />
+                {/* Route: Command Center Deep Dive (/incidents/:id) */}
+                <Route
+                  path="/incidents/:id"
+                  element={
+                    <IncidentDeepDivePage
+                      incidents={incidents}
+                      onToggleStep={handleToggleStep}
+                      isUpdatingStep={isUpdatingStep}
+                      onRefreshIncidents={fetchIncidents}
+                    />
+                  }
+                />
 
-              {/* Route: The Noise Stream (/alerts) */}
-              <Route
-                path="/alerts"
-                element={
-                  <NoiseStreamPage
-                    alerts={alerts}
-                    onTriggerTriage={handleTriggerTriage}
-                    isPaused={isStreamPaused}
-                    onTogglePause={() => setIsStreamPaused(prev => !prev)}
-                    onInjectAlert={handleInjectAlert}
-                  />
-                }
-              />
+                {/* Route: The Noise Stream (/alerts) */}
+                <Route
+                  path="/alerts"
+                  element={
+                    <NoiseStreamPage
+                      alerts={alerts}
+                      onTriggerTriage={handleTriggerTriage}
+                      isPaused={isStreamPaused}
+                      onTogglePause={() => setIsStreamPaused(prev => !prev)}
+                      onInjectAlert={handleInjectAlert}
+                    />
+                  }
+                />
 
-              {/* Route: Post-Mortems Archive (/post-mortems) */}
-              <Route
-                path="/post-mortems"
-                element={<PostMortemsPage />}
-              />
+                {/* Route: Post-Mortems Archive (/post-mortems) */}
+                <Route
+                  path="/post-mortems"
+                  element={<PostMortemsPage />}
+                />
 
-              {/* Route: Integrations Onboarding (/integrations) */}
-              <Route
-                path="/integrations"
-                element={<IntegrationsPage />}
-              />
+                {/* Route: Integrations Onboarding (/integrations) */}
+                <Route
+                  path="/integrations"
+                  element={<IntegrationsPage />}
+                />
 
-              {/* Fallback */}
-              <Route path="*" element={<Navigate to="/incidents" replace />} />
-            </Routes>
+                {/* Fallback */}
+                <Route path="*" element={<Navigate to="/incidents" replace />} />
+              </Routes>
+            </Suspense>
           </main>
         </div>
       </div>

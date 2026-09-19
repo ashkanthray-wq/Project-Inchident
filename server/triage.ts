@@ -1,15 +1,21 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { RawAlert, Incident, RunbookStep } from "../src/types";
 
-// Initialize Gemini SDK with User-Agent telemetry
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  httpOptions: {
-    headers: {
-      'User-Agent': 'aistudio-build',
-    }
+// Lazy initialized Gemini SDK to prevent crashes or overhead during container startup when GEMINI_API_KEY is not set
+let aiClient: GoogleGenAI | null = null;
+function getAiClient(): GoogleGenAI {
+  if (!aiClient) {
+    aiClient = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY,
+      httpOptions: {
+        headers: {
+          'User-Agent': 'aistudio-build',
+        }
+      }
+    });
   }
-});
+  return aiClient;
+}
 
 const TRIAGE_SYSTEM_PROMPT = `
 You are an expert Site Reliability Engineer (Incident Commander). 
@@ -58,7 +64,7 @@ export async function executeAiTriage(rawAlerts: RawAlert[], matchedResolution?:
 
   for (const modelName of modelsToAttempt) {
     try {
-      const response = await ai.models.generateContent({
+      const response = await getAiClient().models.generateContent({
         model: modelName,
         contents: prompt,
         config: {

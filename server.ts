@@ -1,14 +1,10 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import { db, INITIAL_MOCK_ALERTS } from "./server/db";
 import { executeAiTriage } from "./server/triage";
 import { SCENARIOS } from "./server/scenarios";
 import { RawAlert } from "./src/types";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Pool of mock alerts for real-time chaos simulation
 const CHAOS_ALERT_POOL: RawAlert[] = [
