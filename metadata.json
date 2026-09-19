@@ -1,0 +1,6 @@
+{
+  "name": "Ops Incident Commander",
+  "description": "Autonomous AI incident triage dashboard replacing alert fatigue with real-time root cause isolation and mitigation runbooks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

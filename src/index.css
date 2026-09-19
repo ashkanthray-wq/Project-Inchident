@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Accessibility focus styles and base transitions */
+*:focus-visible {
+  outline: 2px solid #e11d48;
+  outline-offset: 2px;
+}
