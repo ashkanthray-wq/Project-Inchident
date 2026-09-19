@@ -314,10 +314,15 @@ export const IncidentDeepDivePage: React.FC<IncidentDeepDivePageProps> = ({
             id="btn-generate-post-mortem"
             onClick={handleGeneratePostMortem}
             disabled={isGeneratingPostMortem}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-sm transition-all active:scale-95 disabled:opacity-50 shrink-0"
+            className="ai-gradient-btn ai-cta-btn text-white shadow-lg shadow-indigo-500/30 border border-indigo-400/30 transition-all active:scale-95 disabled:opacity-50 shrink-0 cursor-pointer"
           >
-            <FileText className="w-3.5 h-3.5" />
-            <span>{isGeneratingPostMortem ? 'Synthesizing...' : 'Generate Post-Mortem (G-Docs)'}</span>
+            <span className="w-5 h-5 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 fill-amber-300 animate-pulse" />
+            </span>
+            <span className="tracking-tight text-white font-bold">{isGeneratingPostMortem ? 'Synthesizing Post-Mortem...' : 'Generate AI Post-Mortem (G-Docs)'}</span>
+            <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-400/20 text-amber-200 border border-amber-300/30 shrink-0">
+              AI Ops
+            </span>
           </button>
         </aside>
       )}

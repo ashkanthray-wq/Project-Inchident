@@ -50,6 +50,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: BookOpen
     },
     {
+      label: 'AI Firewall & Sandbox',
+      path: '/firewall',
+      icon: ShieldAlert,
+      badge: 'SECURE',
+      badgeColor: 'bg-emerald-600 text-white'
+    },
+    {
       label: 'Integrations',
       path: '/integrations',
       icon: Sliders

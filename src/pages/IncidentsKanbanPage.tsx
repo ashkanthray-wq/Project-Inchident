@@ -165,16 +165,23 @@ export const IncidentsKanbanPage: React.FC<IncidentsKanbanPageProps> = ({
           </p>
         </div>
 
-        {/* AI Triage Trigger */}
+        {/* AI Triage Trigger with distinctive AI gradient and standardized size */}
         <button
           type="button"
           id="btn-kanban-triage"
           onClick={handleRunTriage}
           disabled={isTriaging}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-neutral-900 font-semibold text-xs shadow-sm transition-all active:scale-95 disabled:opacity-50"
+          className="ai-gradient-btn ai-cta-btn text-white shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/40 border border-indigo-400/30 transition-all duration-200 active:scale-95 disabled:opacity-50 cursor-pointer"
         >
-          <Sparkles className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-          <span>{isTriaging ? 'Triaging Alert Feed...' : 'Run Autonomous AI Triage'}</span>
+          <span className="w-5 h-5 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300 fill-amber-300 animate-pulse" />
+          </span>
+          <span className="tracking-tight text-white font-bold">
+            {isTriaging ? 'Triaging Alert Feed...' : 'Run Autonomous AI Triage'}
+          </span>
+          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-400/20 text-amber-200 border border-amber-300/30 shrink-0">
+            AI Ops
+          </span>
         </button>
       </div>
 

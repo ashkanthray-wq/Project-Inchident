@@ -113,7 +113,7 @@ ${incident.runbook_steps.map(s => `- [x] Step ${s.id}: ${s.task} (\`${s.executab
             <button
               type="button"
               onClick={handleCopy}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50"
+              className="h-9 inline-flex items-center gap-1.5 px-3 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? 'Copied' : 'Copy'}</span>
@@ -122,7 +122,7 @@ ${incident.runbook_steps.map(s => `- [x] Step ${s.id}: ${s.task} (\`${s.executab
             <button
               type="button"
               onClick={handleDownload}
-              className="p-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50"
+              className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
               title="Download Markdown"
             >
               <Download className="w-4 h-4" />
@@ -131,7 +131,7 @@ ${incident.runbook_steps.map(s => `- [x] Step ${s.id}: ${s.task} (\`${s.executab
             <button
               type="button"
               onClick={onClose}
-              className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200"
+              className="h-9 w-9 inline-flex items-center justify-center rounded-lg text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -233,7 +233,7 @@ ${incident.runbook_steps.map(s => `- [x] Step ${s.id}: ${s.task} (\`${s.executab
             href={`https://docs.google.com/document/create?title=${encodeURIComponent(docTitle)}`}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-xs transition-colors"
+            className="h-10 inline-flex items-center gap-2 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
           >
             <span>Open in Google Docs</span>
             <ExternalLink className="w-3.5 h-3.5" />

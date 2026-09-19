@@ -11,6 +11,7 @@ const IncidentDeepDivePage = lazy(() => import('./pages/IncidentDeepDivePage').t
 const NoiseStreamPage = lazy(() => import('./pages/NoiseStreamPage').then(m => ({ default: m.NoiseStreamPage })));
 const PostMortemsPage = lazy(() => import('./pages/PostMortemsPage').then(m => ({ default: m.PostMortemsPage })));
 const IntegrationsPage = lazy(() => import('./pages/IntegrationsPage').then(m => ({ default: m.IntegrationsPage })));
+const AiFirewallSandboxPage = lazy(() => import('./pages/AiFirewallSandboxPage').then(m => ({ default: m.AiFirewallSandboxPage })));
 
 export default function App() {
   const [alerts, setAlerts] = useState<RawAlert[]>([]);
@@ -163,7 +164,7 @@ export default function App() {
     }
   };
 
-  // Trigger Gemini AI Incident Triage
+  // Trigger Autonomous AI Incident Triage
   const handleTriggerTriage = async (): Promise<Incident | null> => {
     try {
       setTriageState('TRIAGING');
@@ -371,6 +372,12 @@ export default function App() {
                 <Route
                   path="/post-mortems"
                   element={<PostMortemsPage />}
+                />
+
+                {/* Route: AI Firewall & Sandbox (/firewall) */}
+                <Route
+                  path="/firewall"
+                  element={<AiFirewallSandboxPage />}
                 />
 
                 {/* Route: Integrations Onboarding (/integrations) */}

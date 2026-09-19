@@ -182,7 +182,7 @@ ${doc.resolution}
                   <button
                     type="button"
                     onClick={() => handleCopyMarkdown(selectedDoc)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 text-xs font-semibold transition-colors"
+                    className="h-9 inline-flex items-center gap-2 px-3.5 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-750 text-xs font-semibold transition-all active:scale-95 cursor-pointer"
                   >
                     {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copied ? 'Copied' : 'Copy Markdown'}</span>
@@ -192,7 +192,7 @@ ${doc.resolution}
                     href={`https://docs.google.com/document/create?title=${encodeURIComponent('Post-Mortem: ' + selectedDoc.title)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-2xs transition-colors"
+                    className="h-9 inline-flex items-center gap-2 px-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-xs transition-all active:scale-95 cursor-pointer"
                   >
                     <span>Open in G-Docs</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />

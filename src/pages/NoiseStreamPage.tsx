@@ -133,17 +133,17 @@ export const NoiseStreamPage: React.FC<NoiseStreamPageProps> = ({
           </p>
         </div>
 
-        {/* Action controls */}
-        <div className="flex items-center gap-2 flex-wrap">
+        {/* Action controls with uniform 40px height buttons */}
+        <div className="flex items-center gap-2.5 flex-wrap">
           {/* Pause Stream Toggle */}
           <button
             type="button"
             id="btn-toggle-pause-stream"
             onClick={onTogglePause}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`h-10 inline-flex items-center gap-2 px-3.5 rounded-xl text-xs font-semibold transition-all active:scale-95 cursor-pointer ${
               isPaused
                 ? 'bg-amber-500 text-white shadow-xs animate-pulse'
-                : 'bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200'
+                : 'bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700'
             }`}
             title={isPaused ? "Resume live streaming" : "Freeze feed to inspect logs"}
           >
@@ -165,7 +165,7 @@ export const NoiseStreamPage: React.FC<NoiseStreamPageProps> = ({
               type="button"
               id="btn-inject-chaos-alert"
               onClick={onInjectAlert}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs font-semibold"
+              className="h-10 inline-flex items-center gap-2 px-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 text-xs font-semibold transition-all active:scale-95 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Inject Anomaly</span>
@@ -181,10 +181,15 @@ export const NoiseStreamPage: React.FC<NoiseStreamPageProps> = ({
               }
               navigate('/incidents');
             }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-neutral-900 text-xs font-semibold shadow-xs"
+            className="ai-gradient-btn ai-cta-btn text-white shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/40 border border-indigo-400/30 transition-all active:scale-95 cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-            <span>AI Triage Stream</span>
+            <span className="w-5 h-5 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 fill-amber-300 animate-pulse" />
+            </span>
+            <span className="tracking-tight text-white font-bold">AI Triage Stream</span>
+            <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-400/20 text-amber-200 border border-amber-300/30 shrink-0">
+              AI Ops
+            </span>
           </button>
         </div>
       </div>

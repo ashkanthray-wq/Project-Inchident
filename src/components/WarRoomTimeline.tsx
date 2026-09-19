@@ -47,7 +47,7 @@ export const WarRoomTimeline: React.FC<WarRoomTimelineProps> = ({
       time: formatOffset(-2),
       title: 'Root Cause Isolated & Triaged',
       description: `${incident.title} matched heuristics. SEV-1 assigned.`,
-      actor: 'Gemini Flash AI',
+      actor: 'AI Reasoning Engine',
       type: 'ai'
     },
     {

@@ -4,6 +4,7 @@ import { createServer as createViteServer } from "vite";
 import { db, INITIAL_MOCK_ALERTS } from "./server/db";
 import { executeAiTriage } from "./server/triage";
 import { SCENARIOS } from "./server/scenarios";
+import { firewallEngine } from "./server/firewallEngine";
 import { RawAlert } from "./src/types";
 
 // Pool of mock alerts for real-time chaos simulation
@@ -142,7 +143,7 @@ async function startServer() {
     res.json({ running: isChaosRunning });
   });
 
-  // AI Triage Endpoint (Executes Gemini AI model correlation with Postgres historical context)
+  // AI Triage Endpoint (Executes AI model correlation with Postgres historical context)
   app.post("/api/triage", async (req, res) => {
     try {
       const alerts = db.getAlerts();
@@ -261,6 +262,36 @@ async function startServer() {
   app.post("/api/reset", (req, res) => {
     db.reset();
     res.json({ success: true, message: "Database reset to chaotic state with 8 alerts." });
+  });
+
+  // AI Firewall & Pre-Flight Guardrail Endpoints
+  app.post("/api/firewall/validate", (req, res) => {
+    const { command } = req.body;
+    if (!command || typeof command !== "string") {
+      return res.status(400).json({ error: "Missing or invalid 'command' parameter." });
+    }
+    const result = firewallEngine.validateCommand(command);
+    res.json(result);
+  });
+
+  app.post("/api/firewall/dry-run", (req, res) => {
+    const { command } = req.body;
+    if (!command || typeof command !== "string") {
+      return res.status(400).json({ error: "Missing or invalid 'command' parameter." });
+    }
+    const result = firewallEngine.simulateDryRun(command);
+    res.json(result);
+  });
+
+  app.post("/api/alerts/compress", (req, res) => {
+    const alerts = db.getAlerts();
+    const result = firewallEngine.compressAlerts(alerts);
+    res.json(result);
+  });
+
+  app.get("/api/firewall/audit-ledger", (req, res) => {
+    const ledger = firewallEngine.getAuditLedger();
+    res.json(ledger);
   });
 
   // Vite middleware for development

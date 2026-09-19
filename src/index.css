@@ -7,3 +7,55 @@
   outline: 2px solid #e11d48;
   outline-offset: 2px;
 }
+
+/* AI Specialized Gradient & Shimmer Effects */
+@keyframes ai-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.ai-gradient-btn {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #4c1d95 50%, #3b0764 75%, #1e1b4b 100%);
+  background-size: 250% 250%;
+  animation: ai-gradient-shift 6s ease infinite;
+}
+
+.ai-gradient-btn:hover {
+  background: linear-gradient(135deg, #312e81 0%, #4338ca 30%, #6d28d9 60%, #4c1d95 100%);
+  background-size: 200% 200%;
+}
+
+.dark .ai-gradient-btn {
+  background: linear-gradient(135deg, #2e1065 0%, #4c1d95 25%, #6d28d9 50%, #4338ca 75%, #2e1065 100%);
+  background-size: 250% 250%;
+  animation: ai-gradient-shift 6s ease infinite;
+}
+
+.dark .ai-gradient-btn:hover {
+  background: linear-gradient(135deg, #3b0764 0%, #581c87 30%, #7c3aed 60%, #4f46e5 100%);
+  background-size: 200% 200%;
+}
+
+/* Standardized AI CTA sizing token: consistent 40px (h-10) height, 16px (px-4) horizontal padding */
+.ai-cta-btn {
+  height: 2.5rem; /* 40px uniform height across all viewports */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.75rem; /* 12px rounded-xl */
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  box-sizing: border-box;
+}

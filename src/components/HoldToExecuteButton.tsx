@@ -69,7 +69,7 @@ export const HoldToExecuteButton: React.FC<HoldToExecuteButtonProps> = ({
 
   if (isCompleted) {
     return (
-      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 text-xs font-semibold">
+      <div className="h-9 inline-flex items-center gap-1.5 px-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 text-xs font-semibold">
         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
         <span>Executed</span>
       </div>
@@ -78,7 +78,7 @@ export const HoldToExecuteButton: React.FC<HoldToExecuteButtonProps> = ({
 
   if (isExecuting) {
     return (
-      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-xs font-semibold animate-pulse">
+      <div className="h-9 inline-flex items-center gap-2 px-3.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-xs font-semibold animate-pulse">
         <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-600 dark:text-amber-400" />
         <span>Executing Webhook...</span>
       </div>
@@ -99,7 +99,7 @@ export const HoldToExecuteButton: React.FC<HoldToExecuteButtonProps> = ({
         onTouchEnd={cancelHold}
         onTouchCancel={cancelHold}
         disabled={disabled}
-        className={`relative overflow-hidden inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-150 active:scale-[0.98] ${
+        className={`h-9 relative overflow-hidden inline-flex items-center gap-2 px-4 rounded-lg text-xs font-semibold transition-all duration-150 active:scale-[0.98] ${
           isHolding
             ? 'bg-neutral-900 text-white shadow-md ring-2 ring-rose-500'
             : 'bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-white text-white dark:text-neutral-900 shadow-xs'

@@ -26,7 +26,7 @@ export const WarRoomActions: React.FC<WarRoomActionsProps> = ({ incident }) => {
 
   const handleGeneratePostMortem = () => {
     setIsGeneratingDoc(true);
-    // Simulate generation with Gemini & Google Docs API
+    // Simulate generation with AI Reasoning Engine & Google Docs API
     setTimeout(() => {
       setIsGeneratingDoc(false);
       setDocGenerated(true);
@@ -69,7 +69,7 @@ export const WarRoomActions: React.FC<WarRoomActionsProps> = ({ incident }) => {
             href={meetUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700 text-xs font-semibold shadow-xs transition-all active:scale-95"
+            className="h-9 inline-flex items-center gap-2 px-3.5 rounded-lg bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700 text-xs font-semibold shadow-xs transition-all active:scale-95"
             title="Join auto-provisioned Google Meet video bridge"
           >
             <Video className="w-4 h-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
@@ -84,7 +84,7 @@ export const WarRoomActions: React.FC<WarRoomActionsProps> = ({ incident }) => {
               id="btn-generate-postmortem-doc"
               onClick={handleGeneratePostMortem}
               disabled={isGeneratingDoc}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-semibold shadow-xs transition-all active:scale-95 disabled:opacity-75 disabled:cursor-not-allowed"
+              className="h-9 inline-flex items-center gap-2 px-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-semibold shadow-xs transition-all active:scale-95 disabled:opacity-75 disabled:cursor-not-allowed"
             >
               {isGeneratingDoc ? (
                 <>
@@ -105,7 +105,7 @@ export const WarRoomActions: React.FC<WarRoomActionsProps> = ({ incident }) => {
                 href={docUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs transition-all active:scale-95"
+                className="h-9 inline-flex items-center gap-2 px-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs transition-all active:scale-95"
               >
                 <FileCheck2 className="w-4 h-4 text-emerald-200" aria-hidden="true" />
                 <span>Open Post-Mortem (Google Docs)</span>
@@ -115,7 +115,7 @@ export const WarRoomActions: React.FC<WarRoomActionsProps> = ({ incident }) => {
               <button
                 type="button"
                 onClick={handleCopyDocLink}
-                className="p-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 title="Copy Google Doc URL"
                 aria-label="Copy Google Doc URL"
               >

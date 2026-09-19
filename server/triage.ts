@@ -58,8 +58,8 @@ export async function executeAiTriage(rawAlerts: RawAlert[], matchedResolution?:
     return getFallbackTriage(rawAlerts, matchedResolution);
   }
 
-  // Resilient multi-model execution: Try primary gemini-3.8-flash, fall back to gemini-3.1-flash-lite on transient 503/429
-  const modelsToAttempt = ["gemini-3.8-flash", "gemini-3.1-flash-lite"];
+  // Resilient multi-tier model execution: prioritize high-availability flash aliases and flash-lite, seamlessly falling back
+  const modelsToAttempt = ["gemini-flash-latest", "gemini-3.1-flash-lite", "gemini-3.8-flash"];
   let rawJsonText: string | null = null;
 
   for (const modelName of modelsToAttempt) {
